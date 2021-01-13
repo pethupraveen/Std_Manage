@@ -10,7 +10,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           <div class="card">
 		  <div class="card-header card-header-rose card-header-icon">
                   <div class="card-icon">
-                    <i class="material-icons">person</i>
+                    <i class="material-icons">persons</i>
                   </div>
                   <h4 class="card-title">Profile</h4>
               
