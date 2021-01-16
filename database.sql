@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 12, 2021 at 04:51 PM
+-- Generation Time: Jan 16, 2021 at 03:31 PM
 -- Server version: 10.1.36-MariaDB
 -- PHP Version: 5.6.38
 
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `Std_Manage`
+-- Database: `bootsbac_igni745`
 --
 
 -- --------------------------------------------------------
@@ -45,7 +45,7 @@ CREATE TABLE `company` (
 --
 
 INSERT INTO `company` (`id`, `company_name`, `service_charge_value`, `vat_charge_value`, `address`, `phone`, `country`, `message`, `currency`) VALUES
-(1, 'Navika InfoTech', '', '13', 'READING', '234234235', 'Spain', 'this is just an testing', 'INR');
+(1, 'School Name ', '', '13', 'READING', '234234235', 'India', 'this is just an testing', 'INR');
 
 -- --------------------------------------------------------
 
@@ -65,8 +65,8 @@ CREATE TABLE `groups` (
 
 INSERT INTO `groups` (`id`, `group_name`, `permission`) VALUES
 (1, 'Super Administrator', 'a:15:{i:0;s:10:\"createUser\";i:1;s:10:\"updateUser\";i:2;s:8:\"viewUser\";i:3;s:10:\"deleteUser\";i:4;s:11:\"createGroup\";i:5;s:11:\"updateGroup\";i:6;s:9:\"viewGroup\";i:7;s:11:\"deleteGroup\";i:8;s:11:\"createStore\";i:9;s:11:\"updateStore\";i:10;s:9:\"viewStore\";i:11;s:11:\"deleteStore\";i:12;s:13:\"updateCompany\";i:13;s:13:\"updateSetting\";i:14;s:11:\"viewProfile\";}'),
-(10, 'Manager', 'a:11:{i:0;s:10:\"createUser\";i:1;s:10:\"updateUser\";i:2;s:8:\"viewUser\";i:3;s:10:\"deleteUser\";i:4;s:11:\"createGroup\";i:5;s:11:\"updateGroup\";i:6;s:9:\"viewGroup\";i:7;s:11:\"updateStore\";i:8;s:9:\"viewStore\";i:9;s:13:\"updateSetting\";i:10;s:11:\"viewProfile\";}'),
-(11, 'User', 'a:2:{i:0;s:13:\"updateSetting\";i:1;s:11:\"viewProfile\";}');
+(10, 'Teacher', 'a:11:{i:0;s:10:\"createUser\";i:1;s:10:\"updateUser\";i:2;s:8:\"viewUser\";i:3;s:10:\"deleteUser\";i:4;s:11:\"createGroup\";i:5;s:11:\"updateGroup\";i:6;s:9:\"viewGroup\";i:7;s:11:\"updateStore\";i:8;s:9:\"viewStore\";i:9;s:13:\"updateSetting\";i:10;s:11:\"viewProfile\";}'),
+(11, 'Student', 'a:2:{i:0;s:13:\"updateSetting\";i:1;s:11:\"viewProfile\";}');
 
 -- --------------------------------------------------------
 
@@ -86,7 +86,26 @@ CREATE TABLE `stores` (
 
 INSERT INTO `stores` (`id`, `name`, `active`) VALUES
 (1, 'D.D.Puram', 1),
-(6, 'Rajendra nagar', 1);
+(6, 'Rajendran', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `student`
+--
+
+CREATE TABLE `student` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `active` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `student`
+--
+
+INSERT INTO `student` (`id`, `name`, `active`) VALUES
+(1, 'Praveen', 1);
 
 -- --------------------------------------------------------
 
@@ -161,6 +180,12 @@ ALTER TABLE `stores`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `student`
+--
+ALTER TABLE `student`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -193,6 +218,12 @@ ALTER TABLE `groups`
 --
 ALTER TABLE `stores`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `student`
+--
+ALTER TABLE `student`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `users`
