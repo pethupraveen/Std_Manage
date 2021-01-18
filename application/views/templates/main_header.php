@@ -84,8 +84,14 @@
               <p>Teachers Registration</p>
             </a>
           </li>
-		 <?php	}  
-			 	 
+		 <?php	}  {   ?>
+      <li class="nav-item" id="storesMainNav">
+            <a class="nav-link" href="<?php echo base_url('student');?>">
+              <i class="material-icons">person_add</i>
+              <p>Student Registration</p>
+            </a>
+          </li>
+			 	 <?php }
            }  ?>
 		 
        

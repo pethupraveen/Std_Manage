@@ -1,14 +1,14 @@
 <?php
 
-class Student extends CI_Controller {
+class Student extends Admin_Controller {
 
 	public function __construct()
 	{
 		parent::__construct();
 		//Load Dependencies
-		//$this->not_logged_in();
+		$this->not_logged_in();
 		
-		$this->data['page_title'] = 'Store';
+		$this->data['page_title'] = 'Student';
 		$this->load->model('model_student');
 
 	}
@@ -16,54 +16,12 @@ class Student extends CI_Controller {
 	// List all your items
 	public function index()
 	{
-	 if(!in_array('viewStudent', $this->permission)) {
-         redirect('dashboard', 'refresh');
-       }
-      // $this->data['js'] = 'application/views/stores/index-js.php';
         $this->render_template('Student/index', $this->data);
 	}
 
-	public function fetchCategoryData()
-	{
-		if(!in_array('viewStudent', $this->permission)) {
-            redirect('dashboard', 'refresh');
-        }
-
-		$result = array('data' => array());
-
-		$data = $this->model_student->getStudentData();
-
-		foreach ($data as $key => $value) {
-			// button
-			$buttons = '';
-
-			if(in_array('updateStudent', $this->permission)) {
-				$buttons = '<button type="button" class="btn btn-default" onclick="editFunc('.$value['id'].')" data-toggle="modal" data-target="#editModal"><i class="fa fa-edit"></i></button>';
-			}
-
-			if(in_array('deleteStudent', $this->permission)) {
-				$buttons .= ' <button type="button" class="btn btn-default" onclick="removeFunc('.$value['id'].')" data-toggle="modal" data-target="#removeModal"><i class="fa fa-trash"></i></button>';
-			}
-
-			$status = ($value['active'] == 1) ? '<span class="label label-success">Active</span>' : '<span class="label label-warning">Inactive</span>';
-
-			$result['data'][$key] = array(
-				$value['name'],
-				$status,
-				$buttons
-			);
-		} // /foreach
-
-		echo json_encode($result);
-	}
-
-	// Add a new item
 	public function create()
 	{
-		if(!in_array('createStudent', $this->permission)) {
-			redirect('dashboard', 'refresh');
-		}
-
+		
 		$response = array();
 
 		$this->form_validation->set_rules('stduent_name', 'Stduent name', 'trim|required');
@@ -77,7 +35,7 @@ class Student extends CI_Controller {
         		'active' => $this->input->post('active'),	
         	);
 
-        	$create = $this->model_stores->create($data);
+        	$create = $this->model_student->create($data);
         	if($create == true) {
         		$response['success'] = true;
         		$response['messages'] = 'Succesfully created';
@@ -100,7 +58,7 @@ class Student extends CI_Controller {
 	public function fetchStudentDataById($id = null)
 	{
 		if($id) {
-			$data = $this->model_student->getStduentData($id);
+			$data = $this->model_student->getStudentData($id);
 			echo json_encode($data);
 		}
 		
@@ -109,10 +67,7 @@ class Student extends CI_Controller {
 	//Update one item
 	public function update($id)
 	{
-		if(!in_array('updateStudent', $this->permission)) {
-			redirect('dashboard', 'refresh');
-		}
-
+		
 		$response = array();
 
 		if($id) {
@@ -155,9 +110,7 @@ class Student extends CI_Controller {
 	//Delete one item
 	public function remove()
 	{
-		if(!in_array('deleteStudent', $this->permission)) {
-			redirect('dashboard', 'refresh');
-		}
+		
 		
 		$std_id = $this->input->post('std_id');
 

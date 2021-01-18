@@ -1,164 +1,109 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>   <!-- Main content -->
-    <div class="content">
-      <div class="container-fluid">
+<div class="content">
+    <div class="container-fluid">
+      <!-- Table -->
+      <h2 class="mb-5">My Account Card</h2>
       <div class="row">
-        <div class="col-md-12 col-xs-12">
-
-          <div id="messages"></div>
-          
-          <?php if(in_array('createStudent', $user_permission)): ?>
-            <button class="btn btn-primary" data-toggle="modal" data-target="#addModal">Add Student</button>
-            
-          <?php endif; ?>
-
-
-          <div class="card">
-             <div class="card-header card-header-rose card-header-icon">
-                  
-                 
+        <div class="col-md-12 col-xs-12 m-auto order-xl-1">
+          <div class="card bg-secondary shadow">
+            <div class="card-header bg-white border-0">
+              <div class="row align-items-center">
+                <div class="col-8">
+                  <h3 class="mb-0">My account</h3>
                 </div>
-            <div class="card-body">
-			<div class="table-responsive">
-              <table id="manageTable" class="table table-striped">
-                <thead>
-                <tr>
-                  <th>Teacher name</th>
-                  <th>Status</th>
-                  <?php if(in_array('updateStudent', $user_permission) || in_array('deleteStudent', $user_permission)){ ?>
-                  <th>Action</th>
-                  <?php } ?>
-                </tr>
-                </thead>
-                <tbody>
-
-                </tbody>
-              </table>
+                <div class="col-4 text-right">
+                  <a href="#!" class="btn btn-sm btn-primary">Settings</a>
+                </div>
+              </div>
             </div>
-			</div>
-            <!-- /.box-body -->
+            <div class="card-body">
+              <form>
+                <h6 class="heading-small text-muted mb-4">Student information</h6>
+                <div class="pl-lg-4">
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group focused">
+                        <label class="form-control-label" for="input-username">Username</label>
+                        <input type="text" id="input-username" class="form-control form-control-alternative" placeholder="Username" value="lucky.jesse">
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-email">Email address</label>
+                        <input type="email" id="input-email" class="form-control form-control-alternative" placeholder="jesse@example.com">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group focused">
+                        <label class="form-control-label" for="input-first-name">First name</label>
+                        <input type="text" id="input-first-name" class="form-control form-control-alternative" placeholder="First name" value="Lucky">
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group focused">
+                        <label class="form-control-label" for="input-last-name">Last name</label>
+                        <input type="text" id="input-last-name" class="form-control form-control-alternative" placeholder="Last name" value="Jesse">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <hr class="my-4">
+                <!-- Address -->
+                <h6 class="heading-small text-muted mb-4">Contact information</h6>
+                <div class="pl-lg-4">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="form-group focused">
+                        <label class="form-control-label" for="input-address">Address</label>
+                        <input id="input-address" class="form-control form-control-alternative" placeholder="Home Address" value="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09" type="text">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-4">
+                      <div class="form-group focused">
+                        <label class="form-control-label" for="input-city">City</label>
+                        <input type="text" id="input-city" class="form-control form-control-alternative" placeholder="City" value="New York">
+                      </div>
+                    </div>
+                    <div class="col-lg-4">
+                      <div class="form-group focused">
+                        <label class="form-control-label" for="input-country">Country</label>
+                        <input type="text" id="input-country" class="form-control form-control-alternative" placeholder="Country" value="United States">
+                      </div>
+                    </div>
+                    <div class="col-lg-4">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-country">Postal code</label>
+                        <input type="number" id="input-postal-code" class="form-control form-control-alternative" placeholder="Postal code">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <hr class="my-4">
+                <!-- Description -->
+                <h6 class="heading-small text-muted mb-4">About me</h6>
+                <div class="pl-lg-4">
+                  <div class="form-group focused">
+                    <label>About Me</label>
+                    <textarea rows="4" class="form-control form-control-alternative" placeholder="A few words about you ...">A beautiful Dashboard for Bootstrap 4. It is Free and Open Source.</textarea>
+                  </div>
+                </div>
+              </form>
+            </div>
           </div>
-          <!-- /.box -->
         </div>
-        <!-- col-md-12 -->
       </div>
-      <!-- /.row -->
-      
-
     </div>
-    <!-- /.content -->
   </div>
-  <!-- /.content-wrapper -->
-
-<?php if(in_array('createStudent', $user_permission)): ?>
-<!-- create brand modal -->
-<div class="modal fade" tabindex="-1" role="dialog" id="addModal">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-	  	<h5 class="modal-title">Add Student</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>        
-      </div>
-
-      <form role="form" action="<?php echo base_url('student/create') ?>" method="post" id="createForm">
-
-        <div class="modal-body">
-
-          <div class="form-group">
-            <label for="brand_name" class="bmd-label-floating">Student Name</label>
-            <input type="text" class="form-control" id="student_name" name="student_name" autocomplete="off">
-          </div>
-
-          <div class="form-group">
-            <label for="active">Status</label>
-            <select class="form-control" id="active" name="active">
-              <option value="1">Active</option>
-              <option value="2">Inactive</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-primary">Submit</button>
-        </div>
-
-      </form>
 
 
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
-<?php endif; ?>
-
-<?php if(in_array('updateStudent', $user_permission)): ?>
-<!-- edit brand modal -->
-<div class="modal fade" tabindex="-1" role="dialog" id="editModal">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title">Edit Student</h4>
-		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>        
-      </div>
-
-      <form role="form" action="<?php echo base_url('student/update') ?>" method="post" id="updateForm">
-
-        <div class="modal-body">
-          <div id="messages"></div>
-
-          <div class="form-group">
-            <label for="brand_name">Student Name</label>
-            <input type="text" class="form-control" id="edit_student_name" name="edit_student_name" placeholder="Enter store name" autocomplete="off">
-          </div>
-
-          <div class="form-group">
-            <label for="active">Status</label>
-            <select class="form-control" id="edit_active" name="edit_active">
-              <option value="1">Active</option>
-              <option value="2">Inactive</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-primary">Save changes</button>
-        </div>
-
-      </form>
-
-
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
-<?php endif; ?>
-
-<?php if(in_array('deleteStudent', $user_permission)): ?>
-<!-- remove brand modal -->
-<div class="modal fade" tabindex="-1" role="dialog" id="removeModal">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title">Remove Student</h4>
-		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>        
-      </div>
-
-      <form role="form" action="<?php echo base_url('student/remove') ?>" method="post" id="removeForm">
-        <div class="modal-body">
-          <p>Do you really want to remove?</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-primary">Save changes</button>
-        </div>
-      </form>
-
-
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
-<?php endif; ?>
+   
+<?php// endif; ?>
 
 
 
